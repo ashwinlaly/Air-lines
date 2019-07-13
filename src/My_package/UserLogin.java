@@ -5,6 +5,12 @@
  */
 package My_package;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dell
@@ -14,6 +20,11 @@ public class UserLogin extends javax.swing.JFrame {
     /**
      * Creates new form UserLogin
      */
+    Connection con;
+    Statement st;
+    ResultSet rst;    
+    Model model = new Model();
+
     public UserLogin() {
         initComponents();
     }
@@ -40,10 +51,6 @@ public class UserLogin extends javax.swing.JFrame {
         jLabel2.setText("User name");
 
         jLabel3.setText("Password");
-
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
 
         jButton2.setText("OK");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -104,9 +111,29 @@ public class UserLogin extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        BookingConfirmation booking = new BookingConfirmation("");
-        booking.setVisible(true);
+        String name = jTextField1.getText().trim();
+        String pass = jTextField2.getText().trim();
+        model.setName(name);
+        if((name.isEmpty()) || pass.isEmpty()){
+            JOptionPane.showMessageDialog(this, "All fields are mandatory");
+        } else {
+            String sql = "select count(*) as exist from users where name = '"+name+"' and password = '"+pass+"'";
+            try {
+                con = DBConnection.getConnection();
+                st = con.createStatement();
+                rst = st.executeQuery(sql);
+                rst.next();
+                if(rst.getInt("exist") > 0 ) {
+                    this.setVisible(false);
+                    BookingConfirmation booking = new BookingConfirmation();
+                    booking.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "not Exists");
+                }
+            } catch (SQLException ex) {
+               System.out.println(ex.getStackTrace());
+            }   
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

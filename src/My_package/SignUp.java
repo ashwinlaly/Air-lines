@@ -1,5 +1,11 @@
 package My_package;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +21,12 @@ public class SignUp extends javax.swing.JFrame {
     /**
      * Creates new form SignUp
      */
+    
+    Connection con;
+    Statement st;
+    ResultSet rst;    
+    Model model = new Model();
+    
     public SignUp() {
         initComponents();
     }
@@ -67,25 +79,22 @@ public class SignUp extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Name");
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("Email");
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("Password");
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("Mobile");
 
-        jTextField1.setText("jTextField1");
+        jButton1.setText("Create");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jButton1.setText("jButton1");
-
-        jButton2.setText("jButton2");
+        jButton2.setText("Clear");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,6 +172,33 @@ public class SignUp extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String name = jTextField1.getText().trim();
+        String password = jTextField2.getText().trim();
+        String email = jTextField3.getText().trim();
+        String mobile = jTextField4.getText().trim();
+        
+        String sql = "insert into users(name,email,password,mobile) values ('"+name+"', '"+password+"', '"+email+"', '"+mobile+"') ";
+        try{
+            try{
+                con = DBConnection.getConnection();
+                st = con.createStatement();
+                int COUNT = st.executeUpdate(sql);
+                if(COUNT == 1){
+                    JOptionPane.showMessageDialog(this, "Account Created Sucessfully.");
+                    home home = new home();
+                    this.setVisible(false);
+                    home.setVisible(true);
+                }
+            } catch(SQLException ex){
+                System.out.println(ex.getStackTrace());
+            }
+        } catch(Exception ex){
+            System.out.println(ex.getStackTrace());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

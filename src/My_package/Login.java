@@ -24,9 +24,9 @@ public class Login extends javax.swing.JFrame {
      */
     Connection con;
     Statement st;
-    ResultSet rst;
-    
+    ResultSet rst;    
     Model model = new Model();
+    
     public Login() {
         initComponents();
 //        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -128,26 +128,26 @@ public class Login extends javax.swing.JFrame {
         String name = jTextField1.getText().trim();
         String pass = jTextField2.getText().trim();
         model.setName(name);
-        String sql = "select count(*) as exists from users where name = "+name+ "and password = "+pass;
-        try {
-            con = DBConnection.getConnection();
-            st = con.createStatement();
-            rst = st.executeQuery(sql);
-            rst.next();
-            if(rst.getInt("exists") > 0 ) {
-                JOptionPane.showMessageDialog(this, "Exists");
-            } else {
-                
-            }
-        } catch (SQLException ex) {
-           System.out.print(ex.getStackTrace());
+        if((name.isEmpty()) || pass.isEmpty()){
+            JOptionPane.showMessageDialog(this, "All fields are mandatory");
+        } else {
+            String sql = "select count(*) as exist from users where name = '"+name+"' and password = '"+pass+"'";
+            try {
+                con = DBConnection.getConnection();
+                st = con.createStatement();
+                rst = st.executeQuery(sql);
+                rst.next();
+                if(rst.getInt("exist") > 0 ) {
+                    this.setVisible(false);
+                    BookingConfirmation booking = new BookingConfirmation();
+                    booking.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "not Exists");
+                }
+            } catch (SQLException ex) {
+               System.out.println(ex.getStackTrace());
+            }   
         }
-        
-        
-//        JOptionPane.showMessageDialog(this, model.getName());
-//        this.setVisible(false);
-//        BookingConfirmation booking = new BookingConfirmation(name);
-//        booking.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
