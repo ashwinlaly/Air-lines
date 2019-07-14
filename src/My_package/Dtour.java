@@ -5,6 +5,9 @@
  */
 package My_package;
 
+import java.util.Random;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dell
@@ -64,13 +67,13 @@ public class Dtour extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("From ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "INDIA", "AMERICA", "AFRICA", "JAPAN", "DENMARK", " " }));
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("To");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "INDIA", "AMERICA", "AFRICA", "JAPAN", "DENMARK" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -81,7 +84,7 @@ public class Dtour extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(74, 74, 74)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(60, 60, 60)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -99,43 +102,42 @@ public class Dtour extends javax.swing.JFrame {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("Airline");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "King Fisher", "Jet Airways", "Spice Jet", "American Airlines", " " }));
 
-        jLabel5.setText("jLabel5");
+        jLabel5.setText("Date");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020", "2021", "2022" }));
 
-        jLabel6.setText("jLabel6");
+        jLabel6.setText("Time");
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1:00", "1:30", "2:00", "2:30", "3:00" }));
 
-        jLabel7.setText("jLabel7");
+        jLabel7.setText("Price of Passenger");
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10000", "15000", "20000", "25000" }));
 
-        jLabel8.setText("jLabel8");
+        jLabel8.setText("No. Of Passenger");
 
-        jTextField1.setText("jTextField1");
+        jLabel9.setText("Total Price");
 
-        jLabel9.setText("jLabel9");
+        jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setText("jTextField2");
-
-        jButton1.setText("jButton1");
-
-        jButton2.setText("jButton2");
+        jButton2.setText("Cancel");
 
         jLabel10.setText("Payment");
 
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jTextField3.setText("jTextField3");
+        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Credit Card", "Cash" }));
 
         jLabel11.setText("Booking ID");
 
@@ -175,7 +177,7 @@ public class Dtour extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                                 .addComponent(jButton2))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
@@ -274,6 +276,25 @@ public class Dtour extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String from = jComboBox1.getSelectedItem().toString();
+        String to = jComboBox2.getSelectedItem().toString();
+        String plane = jComboBox3.getSelectedItem().toString();
+        String date = jComboBox3.getSelectedItem().toString();
+        String month = jComboBox3.getSelectedItem().toString();
+        String year = jComboBox3.getSelectedItem().toString();
+        String day = year + " - " + month + " - " + date;
+        String time = jComboBox7.getSelectedItem().toString();
+        String price = jComboBox8.getSelectedItem().toString();
+        String payment = jComboBox9.getSelectedItem().toString();
+        int passenger_count = Integer.parseInt(jTextField1.getText().toString());
+        int booking_type = 2; // international 
+        Random rand = new Random();
+        int booking_id = rand.nextInt(9000000) + 1000000;
+        JOptionPane.showMessageDialog(this, jComboBox1.getSelectedItem().toString());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
